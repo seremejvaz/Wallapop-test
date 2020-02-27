@@ -1,9 +1,11 @@
 <div class="card-container">
   <div class="card-header">
     <p class="email">{{ product.email }}</p>
-    <i class="material-icons">
-      favorite_border
-    </i>
+    <div class="favourite" (click)="favourite(product.id)">
+      <i class="material-icons">{{
+        product.favourite ? "favorite" : "favorite_border"
+      }}</i>
+    </div>
   </div>
   <div class="break-hor"></div>
   <div class="content">

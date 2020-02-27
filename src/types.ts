@@ -5,4 +5,5 @@ export type Product = {
   email: string;
   image: string;
   favourite: boolean;
+  id: number;
 };

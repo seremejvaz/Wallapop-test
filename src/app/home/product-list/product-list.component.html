@@ -1,3 +1,7 @@
 <div class="container">
-  <app-product [product]="product" *ngFor="let product of list"></app-product>
+  <app-product
+    [product]="product"
+    (favourited)="setFavourite($event)"
+    *ngFor="let product of list"
+  ></app-product>
 </div>

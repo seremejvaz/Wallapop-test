@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Product } from "src/types";
+import { ProductService } from "../../product.service";
 
 @Component({
   selector: "app-product",
@@ -8,8 +9,11 @@ import { Product } from "src/types";
 })
 export class ProductComponent implements OnInit {
   @Input() product: Product;
+  @Output() favourited = new EventEmitter<boolean>();
 
-  constructor() {}
-
+  constructor(private productService: ProductService) {}
+  favourite(id) {
+    this.favourited.emit(id);
+  }
   ngOnInit(): void {}
 }

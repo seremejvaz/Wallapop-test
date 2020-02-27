@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { Product } from "../../types";
 import { HttpClient } from "@angular/common/http";
 import { of } from "rxjs";
 

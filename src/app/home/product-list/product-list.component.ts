@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { ProductService } from "../product.service";
-import { isNgTemplate } from "@angular/compiler";
 
 @Component({
   selector: "app-product-list",
@@ -20,12 +19,18 @@ export class ProductListComponent implements OnInit {
     this.productService.getProducts().subscribe((data: any) => {
       if (data && data.items) {
         this.list = data.items.map(item => {
-          return { ...item, id: data.items.indexOf(item) };
+          return { ...item, id: data.items.indexOf(item), favourite: false };
         });
       } else {
         this.list = [];
       }
-      console.log(this.list);
     });
+  }
+
+  setFavourite(id) {
+    this.list[id] = {
+      ...this.list[id],
+      favourite: !this.list[id].favourite
+    };
   }
 }
