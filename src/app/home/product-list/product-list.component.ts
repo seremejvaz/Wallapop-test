@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ProductService } from "../product.service";
+import { isNgTemplate } from "@angular/compiler";
 
 @Component({
   selector: "app-product-list",
@@ -7,7 +8,7 @@ import { ProductService } from "../product.service";
   styleUrls: ["./product-list.component.scss"]
 })
 export class ProductListComponent implements OnInit {
-  private list = [];
+  public list = [];
 
   constructor(private productService: ProductService) {}
 
@@ -18,10 +19,13 @@ export class ProductListComponent implements OnInit {
   getProducts() {
     this.productService.getProducts().subscribe((data: any) => {
       if (data && data.items) {
-        this.list = data.items;
+        this.list = data.items.map(item => {
+          return { ...item, id: data.items.indexOf(item) };
+        });
       } else {
         this.list = [];
       }
+      console.log(this.list);
     });
   }
 }

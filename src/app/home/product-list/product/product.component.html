@@ -1,3 +1,22 @@
-<div class="container">
-  {{ product.title }}
+<div class="card-container">
+  <div class="card-header">
+    <p class="email">{{ product.email }}</p>
+    <i class="material-icons">
+      favorite_border
+    </i>
+  </div>
+  <div class="break-hor"></div>
+  <div class="content">
+    <div class="left-container">
+      <img mat-card-image src="{{ product.image }}" />
+    </div>
+    <div class="break-vert"></div>
+    <div class="right-container">
+      <div class="card-content">
+        <p class="title">{{ product.title }}</p>
+        <p class="price">{{ product.price }}€</p>
+        <p class="description">{{ product.description }}</p>
+      </div>
+    </div>
+  </div>
 </div>

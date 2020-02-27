@@ -8,6 +8,7 @@ import { HomeComponent } from "./home/home.component";
 import { ProductListComponent } from "./home/product-list/product-list.component";
 import { FiltersComponent } from "./home/filters/filters.component";
 import { ProductComponent } from "./home/product-list/product/product.component";
+import { MatCardModule } from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { ProductComponent } from "./home/product-list/product/product.component"
     FiltersComponent,
     ProductComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, MatCardModule],
   providers: [],
   bootstrap: [AppComponent]
 })
