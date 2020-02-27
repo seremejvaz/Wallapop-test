@@ -1,3 +1,6 @@
 <div class="container">
-  <app-product *ngFor="let product of products"></app-product>
+  <!-- <app-product *ngFor="let product of getProducts()"></app-product> -->
+  <div *ngFor="let product of list" class="product">
+    <span>{{ product.title }}</span>
+  </div>
 </div>

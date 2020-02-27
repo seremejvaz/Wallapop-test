@@ -1,19 +1,16 @@
 import { Injectable } from "@angular/core";
 import { Product } from "../../types";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
 import { of } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class ProductService {
-  private list = [];
-
   constructor(private http: HttpClient) {}
 
-  public getProducts(): Product[] {
-    of({
+  public getProducts() {
+    return of({
       items: [
         {
           title: "iPhone 6S Oro",
@@ -195,13 +192,7 @@ export class ProductService {
             "https://webpublic.s3-eu-west-1.amazonaws.com/tech-test/img/headphones.jpg"
         }
       ]
-    }).subscribe((d: any) => {
-      if (d && d.items) {
-        console.log(d.items);
-      }
     });
-
-    return [];
   }
 
   private getFilters() {}

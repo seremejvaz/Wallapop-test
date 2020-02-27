@@ -7,11 +7,21 @@ import { ProductService } from "../product.service";
   styleUrls: ["./product-list.component.scss"]
 })
 export class ProductListComponent implements OnInit {
-  public products = [1, 2, 3];
+  private list = [];
 
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    this.productService.getProducts();
+    this.getProducts();
+  }
+
+  getProducts() {
+    this.productService.getProducts().subscribe((data: any) => {
+      if (data && data.items) {
+        this.list = data.items;
+      } else {
+        this.list = [];
+      }
+    });
   }
 }
