@@ -21,6 +21,7 @@
 .content {
   display: flex;
   flex-direction: row;
+  border-top: 1px solid #e0e0e0;
 }
 
 .left-container {
@@ -37,6 +38,7 @@
 .right-container {
   flex: 1;
   padding: 15px;
+  border-left: 1px solid #e0e0e0;
 }
 
 .card-content {
@@ -64,16 +66,4 @@
 
 .description {
   font-size: 12px;
-}
-
-.break-hor {
-  height: 1px;
-  width: 100%;
-  background-color: #e0e0e0;
-}
-
-.break-vert {
-  width: 1px;
-  height: 100%;
-  background-color: #e0e0e0;
 }

@@ -8,7 +8,8 @@ import { HomeComponent } from "./home/home.component";
 import { ProductListComponent } from "./home/product-list/product-list.component";
 import { FiltersComponent } from "./home/filters/filters.component";
 import { ProductComponent } from "./home/product-list/product/product.component";
-import { MatCardModule } from "@angular/material/card";
+import { MatInputModule } from "@angular/material/input";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,13 @@ import { MatCardModule } from "@angular/material/card";
     FiltersComponent,
     ProductComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, MatCardModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MatInputModule,
+    NoopAnimationsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -194,7 +194,9 @@ export class ProductService {
     });
   }
 
-  private getFilters() {}
+  public getFilters() {
+    return ["title", "description", "price", "email"];
+  }
 
   public setFilters(filter: string) {}
 
