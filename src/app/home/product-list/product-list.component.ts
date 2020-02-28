@@ -16,18 +16,22 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts() {
-    this.productService.getProducts().subscribe((data: any) => {
-      if (data && data.items) {
-        this.list = data.items
-          .filter(i => {
-            return this.productService.getActiveFilter() !== i.title;
-          })
-          .map(item => {
-            return { ...item, id: data.items.indexOf(item), favourite: false };
-          });
-      } else {
-        this.list = [];
-      }
+    this.productService.getFilters().subscribe(f => {
+      this.list = this.productService.getProducts().filter(product => {
+        let keepItem = true;
+        Object.keys(f).map(filterKey => {
+          if (
+            f[filterKey] &&
+            !product[filterKey]
+              .toLowerCase()
+              .includes(f[filterKey].toLowerCase())
+          ) {
+            keepItem = false;
+          }
+        });
+        return keepItem;
+      });
+      console.log(this.list);
     });
   }
 

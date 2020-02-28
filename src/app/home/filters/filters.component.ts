@@ -8,7 +8,6 @@ import { ProductService } from "../product.service";
 })
 export class FiltersComponent implements OnInit {
   private filters = [];
-  private activeFilter = "";
 
   constructor(private productService: ProductService) {}
 
@@ -17,10 +16,12 @@ export class FiltersComponent implements OnInit {
   }
 
   getFilters() {
-    this.filters = this.productService.getFilters();
+    this.productService.getFilters().subscribe(f => {
+      this.filters = f;
+    });
   }
 
-  setFilter(value) {
-    this.productService.setActiveFilter(value);
+  setFilters(key, value) {
+    this.productService.setFilters({ ...this.filters, [key]: value });
   }
 }

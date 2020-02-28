@@ -1,16 +1,24 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { of } from "rxjs";
+import { of, Subject, BehaviorSubject } from "rxjs";
+import { Product } from "src/types";
+import { ReturnStatement } from "@angular/compiler";
 
 @Injectable({
   providedIn: "root"
 })
 export class ProductService {
-  private activeFilter = "";
-  constructor(private http: HttpClient) {}
+  private products: Product[] = [];
+  private filtersSource = new BehaviorSubject<any>({
+    title: "",
+    description: "",
+    price: "",
+    email: ""
+  });
+  private filters$ = this.filtersSource.asObservable();
 
-  public getProducts() {
-    return of({
+  constructor(private http: HttpClient) {
+    of({
       items: [
         {
           title: "iPhone 6S Oro",
@@ -192,23 +200,21 @@ export class ProductService {
             "https://webpublic.s3-eu-west-1.amazonaws.com/tech-test/img/headphones.jpg"
         }
       ]
+    }).subscribe((data: { items: Product[] }) => {
+      this.products = data.items;
     });
   }
 
+  public getProducts() {
+    return this.products;
+  }
+
   public getFilters() {
-    return ["title", "description", "price", "email"];
+    return this.filters$;
   }
 
-  public getActiveFilter() {
-    return this.activeFilter;
-  }
-
-  public setActiveFilter(filter) {
-    this.activeFilter = filter;
-  }
-
-  public setFilters(value: string) {
-    console.log(value);
+  public setFilters(newFilters) {
+    this.filtersSource.next(newFilters);
   }
 
   public setFavourite(id: string) {}

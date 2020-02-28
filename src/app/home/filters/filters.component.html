@@ -1,6 +1,40 @@
-<div class="container" *ngFor="let item of filters">
+<div class="container">
   <mat-form-field class="input">
-    <mat-label>{{ item }}</mat-label>
-    <input #searchedValue matInput (keyup)="setFilter(searchedValue.value)" />
+    <mat-label>Title</mat-label>
+    <input
+      #titleInput
+      matInput
+      (keyup)="setFilters('title', titleInput.value)"
+    />
+  </mat-form-field>
+</div>
+<div class="container">
+  <mat-form-field class="input">
+    <mat-label>Description</mat-label>
+    <input
+      #descriptionValue
+      matInput
+      (keyup)="setFilters('description', descriptionValue.value)"
+    />
+  </mat-form-field>
+</div>
+<div class="container">
+  <mat-form-field class="input">
+    <mat-label>Price</mat-label>
+    <input
+      #priceValue
+      matInput
+      (keyup)="setFilters('price', priceValue.value)"
+    />
+  </mat-form-field>
+</div>
+<div class="container">
+  <mat-form-field class="input">
+    <mat-label>Email</mat-label>
+    <input
+      #emailValue
+      matInput
+      (keyup)="setFilters('email', emailValue.value)"
+    />
   </mat-form-field>
 </div>
