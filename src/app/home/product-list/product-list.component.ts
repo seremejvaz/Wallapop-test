@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ProductService } from "../product.service";
 import { Product } from "src/types";
+import { ModalService } from "../filters/favourites-modal/modal.service";
 
 @Component({
   selector: "app-product-list",
@@ -12,7 +13,10 @@ export class ProductListComponent implements OnInit {
   public filteredList = [];
   public pageItems = 5;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private modalService: ModalService
+  ) {}
 
   ngOnInit() {
     this.loadProducts();

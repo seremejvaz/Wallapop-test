@@ -12,6 +12,7 @@ import { MatInputModule } from "@angular/material/input";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { MatButtonModule } from "@angular/material/button";
 import { FavouritesModalComponent } from "./home/filters/favourites-modal/favourites-modal.component";
+import { ModalService } from "./home/filters/favourites-modal/modal.service";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { FavouritesModalComponent } from "./home/filters/favourites-modal/favour
     NoopAnimationsModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [ModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

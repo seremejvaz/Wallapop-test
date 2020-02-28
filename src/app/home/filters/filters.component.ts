@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { ProductService } from "../product.service";
 import { FavouritesModalComponent } from "./favourites-modal/favourites-modal.component";
+import { ModalService } from "./favourites-modal/modal.service";
 
 @Component({
   selector: "app-filters",
@@ -10,7 +11,10 @@ import { FavouritesModalComponent } from "./favourites-modal/favourites-modal.co
 export class FiltersComponent implements OnInit {
   private filters = null;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private modalService: ModalService
+  ) {}
 
   ngOnInit(): void {
     this.getFilters();
@@ -27,7 +31,7 @@ export class FiltersComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(FavouritesModalComponent, { data: "hola" });
+    this.modalService.openModal();
   }
 
   loadMore() {

@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { ModalService } from "./modal.service";
 
 @Component({
-  selector: 'app-favourites-modal',
-  templateUrl: './favourites-modal.component.html',
-  styleUrls: ['./favourites-modal.component.scss']
+  selector: "app-favourites-modal",
+  templateUrl: "./favourites-modal.component.html",
+  styleUrls: ["./favourites-modal.component.scss"]
 })
 export class FavouritesModalComponent implements OnInit {
+  constructor(private modalService: ModalService) {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  closeModal() {
+    this.modalService.closeModal();
   }
 
+  ngOnInit(): void {}
 }

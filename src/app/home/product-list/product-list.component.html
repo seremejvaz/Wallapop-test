@@ -4,4 +4,8 @@
     [product]="product"
     (favourited)="setFavourite($event)"
   ></app-product>
+  <app-favourites-modal
+    *ngIf="modalService.getIsOpenModal()"
+    [products]="[]"
+  ></app-favourites-modal>
 </div>
