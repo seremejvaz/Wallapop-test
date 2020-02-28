@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { ModalService } from "./modal.service";
 
 @Component({
@@ -7,11 +7,20 @@ import { ModalService } from "./modal.service";
   styleUrls: ["./favourites-modal.component.scss"]
 })
 export class FavouritesModalComponent implements OnInit {
+  @Input() products: [];
+  @Output() favourited = new EventEmitter<boolean>();
+
   constructor(private modalService: ModalService) {}
 
   closeModal() {
     this.modalService.closeModal();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.products);
+  }
+
+  deleteFavourite(id) {
+    this.favourited.emit(id);
+  }
 }

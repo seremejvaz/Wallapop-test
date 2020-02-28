@@ -11,8 +11,9 @@ import { ProductComponent } from "./home/product-list/product/product.component"
 import { MatInputModule } from "@angular/material/input";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { MatButtonModule } from "@angular/material/button";
-import { FavouritesModalComponent } from "./home/filters/favourites-modal/favourites-modal.component";
-import { ModalService } from "./home/filters/favourites-modal/modal.service";
+import { FavouritesModalComponent } from "./home/product-list/favourites-modal/favourites-modal.component";
+import { ModalService } from "./home/product-list/favourites-modal/modal.service";
+import { SortComponent } from './home/sort/sort.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ModalService } from "./home/filters/favourites-modal/modal.service";
     ProductListComponent,
     FiltersComponent,
     ProductComponent,
-    FavouritesModalComponent
+    FavouritesModalComponent,
+    SortComponent
   ],
   imports: [
     BrowserModule,

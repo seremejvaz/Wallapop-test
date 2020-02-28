@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ProductService } from "../product.service";
 import { Product } from "src/types";
-import { ModalService } from "../filters/favourites-modal/modal.service";
+import { ModalService } from "./favourites-modal/modal.service";
 
 @Component({
   selector: "app-product-list",
@@ -58,5 +58,24 @@ export class ProductListComponent implements OnInit {
       ...this.filteredList[id],
       favourite: !this.filteredList[id].favourite
     };
+  }
+
+  getIsOpenModal() {
+    return this.modalService.getIsOpenModal();
+  }
+
+  getFavourites() {
+    return this.filteredList.filter(item => {
+      return item.favourite === true;
+    });
+  }
+
+  getSortProducts(item) {
+    this.productService.getSort().subscribe(s => {
+      console.log(s);
+    });
+    // this.filteredList.sort(function(a, b) {
+    //   return a.item == b.item ? 0 : +(a.item > b.item) || -1;
+    // });
   }
 }

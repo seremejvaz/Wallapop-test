@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { ProductService } from "../product.service";
-import { FavouritesModalComponent } from "./favourites-modal/favourites-modal.component";
-import { ModalService } from "./favourites-modal/modal.service";
+import { FavouritesModalComponent } from "../product-list/favourites-modal/favourites-modal.component";
+import { ModalService } from "../product-list/favourites-modal/modal.service";
 
 @Component({
   selector: "app-filters",

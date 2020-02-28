@@ -1,0 +1,32 @@
+<div class="overlay">
+  <div class="content">
+    <div class="title">
+      <p>Favourites</p>
+      <div class="button" (click)="closeModal()">
+        <i class="material-icons">
+          close
+        </i>
+      </div>
+    </div>
+    <div *ngIf="products.length > 0; else noData">
+      <div *ngFor="let item of products" class="products-container">
+        <img class="image-item" src="{{ item.image }}" />
+        <p class="title-item">{{ item.title }}</p>
+        <button
+          class="button"
+          mat-icon-button
+          aria-label
+          (click)="deleteFavourite(item.id)"
+        >
+          <i class="material-icons">delete</i>
+        </button>
+      </div>
+    </div>
+    <ng-template #noData>
+      <p class="message">
+        You don't have any favourite products. Just pick one clicking on the
+        heart button!
+      </p></ng-template
+    >
+  </div>
+</div>

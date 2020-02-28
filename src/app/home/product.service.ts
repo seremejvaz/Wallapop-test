@@ -18,6 +18,9 @@ export class ProductService {
   });
   private filters$ = this.filtersSource.asObservable();
 
+  private sortSource = new Subject<any>();
+  private sort$ = this.sortSource.asObservable();
+
   constructor(private http: HttpClient) {}
 
   public getProducts() {
@@ -31,17 +34,16 @@ export class ProductService {
   }
 
   public setFilters(newFilters) {
-    console.log(newFilters);
     this.filtersSource.next(newFilters);
   }
 
   public setFavourite(id: string) {}
 
-  public getFavourites() {}
+  public sortBy(item) {
+    this.sortSource.next(item);
+  }
 
-  // public paginator(listLength, numberPage) {
-  //   if (listLength > 5) {
-  //     return { indexOf };
-  //   }
-  // }
+  public getSort() {
+    return this.sort$;
+  }
 }
