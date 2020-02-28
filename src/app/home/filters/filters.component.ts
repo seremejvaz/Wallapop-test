@@ -8,6 +8,7 @@ import { ProductService } from "../product.service";
 })
 export class FiltersComponent implements OnInit {
   private filters = [];
+  private activeFilter = "";
 
   constructor(private productService: ProductService) {}
 
@@ -17,5 +18,9 @@ export class FiltersComponent implements OnInit {
 
   getFilters() {
     this.filters = this.productService.getFilters();
+  }
+
+  setFilter(value) {
+    this.productService.setActiveFilter(value);
   }
 }

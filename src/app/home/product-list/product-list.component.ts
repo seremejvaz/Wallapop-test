@@ -18,9 +18,13 @@ export class ProductListComponent implements OnInit {
   getProducts() {
     this.productService.getProducts().subscribe((data: any) => {
       if (data && data.items) {
-        this.list = data.items.map(item => {
-          return { ...item, id: data.items.indexOf(item), favourite: false };
-        });
+        this.list = data.items
+          .filter(i => {
+            return this.productService.getActiveFilter() !== i.title;
+          })
+          .map(item => {
+            return { ...item, id: data.items.indexOf(item), favourite: false };
+          });
       } else {
         this.list = [];
       }

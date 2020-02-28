@@ -1,6 +1,6 @@
 <div class="container" *ngFor="let item of filters">
   <mat-form-field class="input">
     <mat-label>{{ item }}</mat-label>
-    <input matInput placeholder="Filter by {{ item }}" />
+    <input #searchedValue matInput (keyup)="setFilter(searchedValue.value)" />
   </mat-form-field>
 </div>

@@ -6,6 +6,7 @@ import { of } from "rxjs";
   providedIn: "root"
 })
 export class ProductService {
+  private activeFilter = "";
   constructor(private http: HttpClient) {}
 
   public getProducts() {
@@ -198,7 +199,17 @@ export class ProductService {
     return ["title", "description", "price", "email"];
   }
 
-  public setFilters(filter: string) {}
+  public getActiveFilter() {
+    return this.activeFilter;
+  }
+
+  public setActiveFilter(filter) {
+    this.activeFilter = filter;
+  }
+
+  public setFilters(value: string) {
+    console.log(value);
+  }
 
   public setFavourite(id: string) {}
 
