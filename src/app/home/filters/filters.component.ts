@@ -7,7 +7,7 @@ import { ProductService } from "../product.service";
   styleUrls: ["./filters.component.scss"]
 })
 export class FiltersComponent implements OnInit {
-  private filters = [];
+  private filters = null;
 
   constructor(private productService: ProductService) {}
 
@@ -23,5 +23,12 @@ export class FiltersComponent implements OnInit {
 
   setFilters(key, value) {
     this.productService.setFilters({ ...this.filters, [key]: value });
+  }
+
+  loadMore() {
+    this.productService.setFilters({
+      ...this.filters,
+      page: this.filters.page + 1
+    });
   }
 }

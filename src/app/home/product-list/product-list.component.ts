@@ -10,7 +10,6 @@ import { Product } from "src/types";
 export class ProductListComponent implements OnInit {
   public list = [];
   public filteredList = [];
-  public page = 1;
   public pageItems = 5;
 
   constructor(private productService: ProductService) {}
@@ -32,18 +31,21 @@ export class ProductListComponent implements OnInit {
 
   getFilteredProducts() {
     this.productService.getFilters().subscribe(f => {
-      this.filteredList = this.list.filter(p => {
-        let keepItem = true;
-        Object.keys(f).map(filterKey => {
-          if (
-            f[filterKey] &&
-            !p[filterKey].toLowerCase().includes(f[filterKey].toLowerCase())
-          ) {
-            keepItem = false;
-          }
-        });
-        return keepItem;
-      });
+      this.filteredList = this.list
+        .filter(p => {
+          let keepItem = true;
+          Object.keys(f).map(filterKey => {
+            if (
+              f[filterKey] &&
+              filterKey !== "page" &&
+              !p[filterKey].toLowerCase().includes(f[filterKey].toLowerCase())
+            ) {
+              keepItem = false;
+            }
+          });
+          return keepItem;
+        })
+        .slice(f.page, (f.page + 1) * this.pageItems);
     });
   }
 

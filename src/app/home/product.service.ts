@@ -13,7 +13,8 @@ export class ProductService {
     title: "",
     description: "",
     price: "",
-    email: ""
+    email: "",
+    page: 0
   });
   private filters$ = this.filtersSource.asObservable();
 
@@ -30,6 +31,7 @@ export class ProductService {
   }
 
   public setFilters(newFilters) {
+    console.log(newFilters);
     this.filtersSource.next(newFilters);
   }
 
