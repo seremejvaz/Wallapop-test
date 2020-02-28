@@ -1,7 +1,7 @@
 <div class="container">
   <app-product
+    *ngFor="let product of filteredList"
     [product]="product"
     (favourited)="setFavourite($event)"
-    *ngFor="let product of list"
   ></app-product>
 </div>
