@@ -10,6 +10,8 @@ import { FiltersComponent } from "./home/filters/filters.component";
 import { ProductComponent } from "./home/product-list/product/product.component";
 import { MatInputModule } from "@angular/material/input";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { MatButtonModule } from "@angular/material/button";
+import { FavouritesModalComponent } from "./home/filters/favourites-modal/favourites-modal.component";
 
 @NgModule({
   declarations: [
@@ -17,14 +19,16 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
     HomeComponent,
     ProductListComponent,
     FiltersComponent,
-    ProductComponent
+    ProductComponent,
+    FavouritesModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     MatInputModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

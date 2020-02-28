@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { ProductService } from "../product.service";
+import { FavouritesModalComponent } from "./favourites-modal/favourites-modal.component";
 
 @Component({
   selector: "app-filters",
@@ -23,6 +24,10 @@ export class FiltersComponent implements OnInit {
 
   setFilters(key, value) {
     this.productService.setFilters({ ...this.filters, [key]: value });
+  }
+
+  openDialog() {
+    this.dialog.open(FavouritesModalComponent, { data: "hola" });
   }
 
   loadMore() {
