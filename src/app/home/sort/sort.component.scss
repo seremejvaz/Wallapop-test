@@ -1,5 +1,6 @@
 ::ng-deep .mat-raised-button {
   background-color: #c8e6c9;
+  text-transform: capitalize;
 }
 
 .title {
@@ -11,8 +12,12 @@
   display: flex;
   flex-direction: row;
   align-items: baseline;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .sort-items {
   margin: 15px;
+  display: flex;
+  flex-direction: row;
 }

@@ -36,7 +36,6 @@ export class ProductService {
   }
 
   public setFilters(newFilters) {
-    console.log(newFilters);
     this.filtersSource.next(newFilters);
   }
 

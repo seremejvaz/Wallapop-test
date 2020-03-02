@@ -53,6 +53,10 @@ export class ProductListComponent implements OnInit {
         })
         .slice(f.filters.page, (f.filters.page + 1) * this.pageItems)
         .sort((a, b) => {
+          if (f.sorters.key === "price") {
+            a.price = parseInt(a.price);
+            b.price = parseInt(b.price);
+          }
           if (a[f.sorters.key] < b[f.sorters.key]) {
             return f.sorters.dir * -1;
           }

@@ -1,39 +1,15 @@
 <div class="container">
   <p class="title">Sort by</p>
-  <div class="sort-items">
-    <button
-      mat-raised-button
-      (click)="sortBy('title')"
-      class="paginator-button"
-    >
-      Title
-    </button>
-  </div>
-  <div class="sort-items">
-    <button
-      mat-raised-button
-      (click)="sortBy('description')"
-      class="paginator-button"
-    >
-      Description
-    </button>
-  </div>
-  <div class="sort-items">
-    <button
-      mat-raised-button
-      (click)="sortBy('price')"
-      class="paginator-button"
-    >
-      Price
-    </button>
-  </div>
-  <div class="sort-items">
-    <button
-      mat-raised-button
-      (click)="sortBy('email')"
-      class="paginator-button"
-    >
-      Email
+  <div *ngFor="let sortItem of sortersArray" class="sort-items">
+    <button mat-raised-button (click)="sortBy(sortItem)" class="sort-button">
+      {{ sortItem }}
+      <i *ngIf="this.sorters.sorters.key === sortItem" class="material-icons">
+        {{
+          this.sorters.sorters.dir === 1
+            ? "keyboard_arrow_down"
+            : "keyboard_arrow_up"
+        }}
+      </i>
     </button>
   </div>
 </div>

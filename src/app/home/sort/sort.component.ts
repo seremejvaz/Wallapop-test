@@ -7,7 +7,8 @@ import { ProductService } from "../product.service";
   styleUrls: ["./sort.component.scss"]
 })
 export class SortComponent implements OnInit {
-  private sorters = null;
+  public sorters = null;
+  public sortersArray = ["title", "description", "price", "email"];
 
   constructor(private productService: ProductService) {}
 
