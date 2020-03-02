@@ -16,9 +16,7 @@ export class FavouritesModalComponent implements OnInit {
     this.modalService.closeModal();
   }
 
-  ngOnInit(): void {
-    console.log(this.products);
-  }
+  ngOnInit(): void {}
 
   deleteFavourite(id) {
     this.favourited.emit(id);

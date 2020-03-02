@@ -27,7 +27,10 @@ export class FiltersComponent implements OnInit {
   }
 
   setFilters(key, value) {
-    this.productService.setFilters({ ...this.filters, [key]: value });
+    this.productService.setFilters({
+      ...this.filters,
+      filters: { ...this.filters.filters, [key]: value }
+    });
   }
 
   openDialog() {
@@ -37,7 +40,10 @@ export class FiltersComponent implements OnInit {
   loadMore() {
     this.productService.setFilters({
       ...this.filters,
-      page: this.filters.page + 1
+      filters: {
+        ...this.filters.filters,
+        page: this.filters.filters.page + 1
+      }
     });
   }
 }

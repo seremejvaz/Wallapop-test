@@ -38,18 +38,29 @@ export class ProductListComponent implements OnInit {
       this.filteredList = this.list
         .filter(p => {
           let keepItem = true;
-          Object.keys(f).map(filterKey => {
+          Object.keys(f.filters).map(filterKey => {
             if (
-              f[filterKey] &&
+              f.filters[filterKey] &&
               filterKey !== "page" &&
-              !p[filterKey].toLowerCase().includes(f[filterKey].toLowerCase())
+              !p[filterKey]
+                .toLowerCase()
+                .includes(f.filters[filterKey].toLowerCase())
             ) {
               keepItem = false;
             }
           });
           return keepItem;
         })
-        .slice(f.page, (f.page + 1) * this.pageItems);
+        .slice(f.filters.page, (f.filters.page + 1) * this.pageItems)
+        .sort((a, b) => {
+          if (a[f.sorters.key] < b[f.sorters.key]) {
+            return f.sorters.dir * -1;
+          }
+          if (a[f.sorters.key] > b[f.sorters.key]) {
+            return f.sorters.dir;
+          }
+          return 0;
+        });
     });
   }
 
@@ -68,14 +79,5 @@ export class ProductListComponent implements OnInit {
     return this.filteredList.filter(item => {
       return item.favourite === true;
     });
-  }
-
-  getSortProducts(item) {
-    this.productService.getSort().subscribe(s => {
-      console.log(s);
-    });
-    // this.filteredList.sort(function(a, b) {
-    //   return a.item == b.item ? 0 : +(a.item > b.item) || -1;
-    // });
   }
 }

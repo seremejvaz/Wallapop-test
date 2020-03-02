@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { of, Subject, BehaviorSubject } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 import { Product } from "src/types";
-import { ReturnStatement } from "@angular/compiler";
 
 @Injectable({
   providedIn: "root"
@@ -10,16 +9,19 @@ import { ReturnStatement } from "@angular/compiler";
 export class ProductService {
   private products: Product[] = [];
   private filtersSource = new BehaviorSubject<any>({
-    title: "",
-    description: "",
-    price: "",
-    email: "",
-    page: 0
+    filters: {
+      title: "",
+      description: "",
+      price: "",
+      email: "",
+      page: 0
+    },
+    sorters: {
+      key: "",
+      dir: 1
+    }
   });
   private filters$ = this.filtersSource.asObservable();
-
-  private sortSource = new Subject<any>();
-  private sort$ = this.sortSource.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -34,16 +36,9 @@ export class ProductService {
   }
 
   public setFilters(newFilters) {
+    console.log(newFilters);
     this.filtersSource.next(newFilters);
   }
 
   public setFavourite(id: string) {}
-
-  public sortBy(item) {
-    this.sortSource.next(item);
-  }
-
-  public getSort() {
-    return this.sort$;
-  }
 }

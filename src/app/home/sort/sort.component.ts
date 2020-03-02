@@ -7,11 +7,28 @@ import { ProductService } from "../product.service";
   styleUrls: ["./sort.component.scss"]
 })
 export class SortComponent implements OnInit {
+  private sorters = null;
+
   constructor(private productService: ProductService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getFilters();
+  }
+
+  getFilters() {
+    this.productService.getFilters().subscribe(f => {
+      this.sorters = f;
+    });
+  }
 
   sortBy(item) {
-    this.productService.sortBy(item);
+    this.productService.setFilters({
+      ...this.sorters,
+      sorters: {
+        key: item,
+        dir:
+          this.sorters.sorters.key === item ? this.sorters.sorters.dir * -1 : 1
+      }
+    });
   }
 }
