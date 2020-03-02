@@ -1,9 +1,14 @@
 <div class="container">
-  <app-product
-    *ngFor="let product of filteredList"
-    [product]="product"
-    (favourited)="setFavourite($event)"
-  ></app-product>
+  <div class="product-list" *ngIf="filteredList.length === 0; else productList">
+    <img class="no-results-image" src="../../../assets/image_no_results.png" />
+  </div>
+  <ng-template #productList>
+    <app-product
+      *ngFor="let product of filteredList"
+      [product]="product"
+      (favourited)="setFavourite($event)"
+    ></app-product>
+  </ng-template>
   <app-favourites-modal
     *ngIf="getIsOpenModal()"
     [products]="getFavourites()"

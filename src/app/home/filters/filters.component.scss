@@ -1,29 +1,31 @@
+@import "../../../styles/colors.scss";
+
 .container {
   margin: 10px;
 }
 
 ::ng-deep .mat-checkbox .mat-checkbox-frame {
-  border-color: #aeaeae;
+  border-color: $grey-light;
 }
 
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
-  background-color: #c8e6c9;
+  background-color: $main;
 }
 
 ::ng-deep .mat-input-element {
-  caret-color: #aeaeae;
+  caret-color: $grey-light;
 }
 
 ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-  color: #aeaeae;
+  color: $grey-light;
 }
 
 ::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
-  background-color: #aeaeae;
+  background-color: $grey-light;
 }
 
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
-  color: #c8e6c9;
+  color: $main;
 }
 
 ::ng-deep .mat-form-field {
@@ -35,5 +37,5 @@
 }
 
 ::ng-deep .mat-raised-button {
-  background-color: #c8e6c9;
+  background-color: $main;
 }

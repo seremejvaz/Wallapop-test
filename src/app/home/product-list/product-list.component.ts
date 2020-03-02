@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ProductService } from "../product.service";
 import { Product } from "src/types";
 import { ModalService } from "./favourites-modal/modal.service";
+import { importExpr } from "@angular/compiler/src/output/output_ast";
 
 @Component({
   selector: "app-product-list",
@@ -26,9 +27,11 @@ export class ProductListComponent implements OnInit {
     this.productService
       .getProducts()
       .subscribe((data: { items: Product[] }) => {
+        window.localStorage.setItem("cache", JSON.stringify(data));
         this.list = data.items.map(item => {
           return { ...item, id: data.items.indexOf(item), favourite: false };
         });
+
         this.getFilteredProducts();
       });
   }

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, of } from "rxjs";
 import { Product } from "src/types";
 
 @Injectable({
@@ -26,9 +26,13 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   public getProducts() {
-    return this.http.get(
-      "https://webpublic.s3-eu-west-1.amazonaws.com/tech-test/items.json"
-    );
+    if (!window.localStorage.getItem("cache")) {
+      return this.http.get(
+        "https://webpublic.s3-eu-west-1.amazonaws.com/tech-test/items.json"
+      );
+    } else {
+      return of(JSON.parse(window.localStorage.getItem("cache")));
+    }
   }
 
   public getFilters() {

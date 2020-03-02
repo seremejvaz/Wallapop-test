@@ -1,5 +1,7 @@
+@import "../../../styles/colors.scss";
+
 ::ng-deep .mat-raised-button {
-  background-color: #c8e6c9;
+  background-color: $main;
   text-transform: capitalize;
 }
 
