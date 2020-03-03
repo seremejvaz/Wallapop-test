@@ -45,37 +45,45 @@ export class ProductListComponent implements OnInit {
   getFilteredProducts() {
     this.productService.getFilters().subscribe(f => {
       this.filteredList = this.list
-        .filter(p => {
-          let keepItem = true;
-          Object.keys(f.filters).map(filterKey => {
-            if (
-              f.filters[filterKey] &&
-              filterKey !== "page" &&
-              !p[filterKey]
-                .toLowerCase()
-                .includes(f.filters[filterKey].toLowerCase())
-            ) {
-              keepItem = false;
-            }
-          });
-          return keepItem;
-        })
+        .filter(this.filterProducts(f))
         .slice(f.filters.page, (f.filters.page + 1) * this.pageItems)
-        .sort((a, b) => {
-          if (f.sorters.key === "price") {
-            a.price = parseInt(a.price);
-            b.price = parseInt(b.price);
-          }
-          if (a[f.sorters.key] < b[f.sorters.key]) {
-            return f.sorters.dir * -1;
-          }
-          if (a[f.sorters.key] > b[f.sorters.key]) {
-            return f.sorters.dir;
-          }
-          return 0;
-        });
+        .sort(this.sortProducts(f));
     });
     this.productService.setLoadingState(false);
+  }
+
+  sortProducts(f: any): (a: any, b: any) => number {
+    return (a, b) => {
+      if (f.sorters.key === "price") {
+        a.price = parseInt(a.price);
+        b.price = parseInt(b.price);
+      }
+      if (a[f.sorters.key] < b[f.sorters.key]) {
+        return f.sorters.dir * -1;
+      }
+      if (a[f.sorters.key] > b[f.sorters.key]) {
+        return f.sorters.dir;
+      }
+      return 0;
+    };
+  }
+
+  filterProducts(f: any): (value: any, index: number, array: any[]) => unknown {
+    return p => {
+      let keepItem = true;
+      Object.keys(f.filters).map(filterKey => {
+        if (
+          f.filters[filterKey] &&
+          filterKey !== "page" &&
+          !p[filterKey]
+            .toLowerCase()
+            .includes(f.filters[filterKey].toLowerCase())
+        ) {
+          keepItem = false;
+        }
+      });
+      return keepItem;
+    };
   }
 
   setFavourite(id) {
