@@ -3,6 +3,7 @@ import { ProductService } from "../product.service";
 import { Product } from "src/types";
 import { ModalService } from "./favourites-modal/modal.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { CACHE_KEY } from "../../constants/constants";
 
 @Component({
   selector: "app-product-list",
@@ -27,7 +28,7 @@ export class ProductListComponent implements OnInit {
   loadProducts() {
     this.productService.getProducts().subscribe(
       (data: { items: Product[] }) => {
-        window.localStorage.setItem("cache", JSON.stringify(data));
+        window.localStorage.setItem(CACHE_KEY, JSON.stringify(data));
         this.list = data.items.map(item => {
           return { ...item, id: data.items.indexOf(item), favourite: false };
         });
@@ -108,7 +109,6 @@ export class ProductListComponent implements OnInit {
   }
 
   openSnackBar(message: string) {
-    console.log(this._snackBar);
     this._snackBar.open(message, null, {
       duration: 5000,
       horizontalPosition: "right"

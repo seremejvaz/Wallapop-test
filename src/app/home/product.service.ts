@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, of } from "rxjs";
 import { Product } from "src/types";
+import { API_URL } from "../constants/constants";
+import { CACHE_KEY } from "../constants/constants";
 
 @Injectable({
   providedIn: "root"
@@ -29,12 +31,10 @@ export class ProductService {
 
   public getProducts() {
     this.loading = true;
-    if (!window.localStorage.getItem("cache")) {
-      return this.http.get(
-        "https://webpublic.s3-eu-west-1.amazonaws.com/tech-test/items.json"
-      );
+    if (!window.localStorage.getItem(CACHE_KEY)) {
+      return this.http.get(API_URL);
     } else {
-      return of(JSON.parse(window.localStorage.getItem("cache")));
+      return of(JSON.parse(window.localStorage.getItem(CACHE_KEY)));
     }
   }
 

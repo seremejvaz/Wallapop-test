@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { ProductService } from "../product.service";
 
 @Component({
@@ -11,7 +11,7 @@ export class SortComponent implements OnInit {
   public sortersArray = ["title", "description", "price", "email"];
 
   constructor(private productService: ProductService) {}
-
+  @Input() sortItem: string;
   ngOnInit(): void {
     this.getFilters();
   }

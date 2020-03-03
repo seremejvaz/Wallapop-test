@@ -10,7 +10,12 @@ import { ModalService } from "../product-list/favourites-modal/modal.service";
 })
 export class FiltersComponent implements OnInit {
   private filters = null;
-
+  public FILTERS_KEYS = {
+    TITLE: "title",
+    DESCRIPTION: "description",
+    PRICE: "price",
+    EMAIL: "email"
+  };
   constructor(
     private productService: ProductService,
     private modalService: ModalService

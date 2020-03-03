@@ -1,8 +1,9 @@
 @import "../../../styles/colors.scss";
 
-::ng-deep .mat-raised-button {
+::ng-deep .mat-mini-fab.mat-accent {
   background-color: $main;
   text-transform: capitalize;
+  color: white;
 }
 
 .title {

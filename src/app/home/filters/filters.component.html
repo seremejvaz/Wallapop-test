@@ -4,9 +4,10 @@
     <input
       #titleInput
       matInput
-      (keyup)="setFilters('title', titleInput.value)"
+      (keyup)="setFilters(FILTERS_KEYS.TITLE, titleInput.value)"
     />
   </mat-form-field>
+  <app-sort class="sort-button" [sortItem]="'title'"></app-sort>
 </div>
 <div class="container">
   <mat-form-field class="input">
@@ -14,9 +15,10 @@
     <input
       #descriptionValue
       matInput
-      (keyup)="setFilters('description', descriptionValue.value)"
+      (keyup)="setFilters(FILTERS_KEYS.DESCRIPTION, descriptionValue.value)"
     />
   </mat-form-field>
+  <app-sort class="sort-button" [sortItem]="'description'"></app-sort>
 </div>
 <div class="container">
   <mat-form-field class="input">
@@ -24,9 +26,10 @@
     <input
       #priceValue
       matInput
-      (keyup)="setFilters('price', priceValue.value)"
+      (keyup)="setFilters(FILTERS_KEYS.PRICE, priceValue.value)"
     />
   </mat-form-field>
+  <app-sort class="sort-button" [sortItem]="'price'"></app-sort>
 </div>
 <div class="container">
   <mat-form-field class="input">
@@ -34,9 +37,10 @@
     <input
       #emailValue
       matInput
-      (keyup)="setFilters('email', emailValue.value)"
+      (keyup)="setFilters(FILTERS_KEYS.EMAIL, emailValue.value)"
     />
   </mat-form-field>
+  <app-sort class="sort-button" [sortItem]="'email'"></app-sort>
 </div>
 <div class="paginator">
   <button mat-raised-button (click)="openDialog()" class="paginator-button">
