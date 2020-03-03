@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ProductService } from "../product.service";
 import { Product } from "src/types";
 import { ModalService } from "./favourites-modal/modal.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-product-list",
@@ -15,7 +16,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -23,16 +25,21 @@ export class ProductListComponent implements OnInit {
   }
 
   loadProducts() {
-    this.productService
-      .getProducts()
-      .subscribe((data: { items: Product[] }) => {
+    this.productService.getProducts().subscribe(
+      (data: { items: Product[] }) => {
         window.localStorage.setItem("cache", JSON.stringify(data));
         this.list = data.items.map(item => {
           return { ...item, id: data.items.indexOf(item), favourite: false };
         });
 
         this.getFilteredProducts();
-      });
+      },
+      err => {
+        this.openSnackBar(
+          `Error ${err.status}. There has been an error getting the products.`
+        );
+      }
+    );
   }
 
   getFilteredProducts() {
@@ -90,5 +97,13 @@ export class ProductListComponent implements OnInit {
 
   getIsLoading() {
     return this.productService.loading;
+  }
+
+  openSnackBar(message: string) {
+    console.log(this._snackBar);
+    this._snackBar.open(message, null, {
+      duration: 5000,
+      horizontalPosition: "right"
+    });
   }
 }

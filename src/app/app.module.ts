@@ -16,6 +16,7 @@ import { ModalService } from "./home/product-list/favourites-modal/modal.service
 import { SortComponent } from "./home/sort/sort.component";
 import { LoadingComponent } from "./home/product-list/loading/loading.component";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     MatInputModule,
     NoopAnimationsModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   providers: [ModalService],
   bootstrap: [AppComponent]
