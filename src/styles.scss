@@ -5,10 +5,10 @@ html,
 body {
   height: 100%;
   background-color: $main;
-  // font-family: "Spartan" !important;
+  font-family: "Spartan" !important;
+  //Added this rule to overwrite the prop font of material.
   color: $grey-dark;
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

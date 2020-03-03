@@ -1,28 +1,15 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, of } from "rxjs";
-import { Product } from "src/types";
 import { API_URL } from "../constants/constants";
 import { CACHE_KEY } from "../constants/constants";
+import { FILTERS_SORTERS_DEFAULT } from "../constants/constants";
 
 @Injectable({
   providedIn: "root"
 })
 export class ProductService {
-  private products: Product[] = [];
-  private filtersSource = new BehaviorSubject<any>({
-    filters: {
-      title: "",
-      description: "",
-      price: "",
-      email: "",
-      page: 0
-    },
-    sorters: {
-      key: "",
-      dir: 1
-    }
-  });
+  private filtersSource = new BehaviorSubject<any>(FILTERS_SORTERS_DEFAULT);
   private filters$ = this.filtersSource.asObservable();
 
   public loading: boolean = false;

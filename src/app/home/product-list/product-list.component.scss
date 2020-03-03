@@ -7,8 +7,18 @@
 
 .product-list {
   margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 ::ng-deep .mat-snack-bar-container {
   background-color: $error;
+}
+
+.no-results-text {
+  color: white;
+  font-size: 35px;
+  font-weight: 700;
+  margin: 100px 0;
 }

@@ -3,16 +3,16 @@ export const API_URL =
 
 export const CACHE_KEY = "cache";
 
-export const DATA_MANAGER = {
-  FILTERS: {
-    TITLE: "",
-    DESCRIPTION: "",
-    PRICE: "",
-    EMAIL: "",
-    PAGE: 0
+export const FILTERS_SORTERS_DEFAULT = {
+  filters: {
+    title: "",
+    description: "",
+    price: "",
+    email: "",
+    page: 0
   },
-  SORTERS: {
-    KEY: "",
-    DIR: 1
+  sorters: {
+    key: "",
+    dir: 1
   }
 };
