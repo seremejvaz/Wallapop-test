@@ -15,7 +15,6 @@ import { FavouritesModalComponent } from "./home/product-list/favourites-modal/f
 import { ModalService } from "./home/product-list/favourites-modal/modal.service";
 import { SortComponent } from "./home/sort/sort.component";
 import { LoadingComponent } from "./home/product-list/loading/loading.component";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 @NgModule({
@@ -36,7 +35,6 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     MatInputModule,
     NoopAnimationsModule,
     MatButtonModule,
-    MatProgressSpinnerModule,
     MatSnackBarModule
   ],
   providers: [ModalService],

@@ -33,8 +33,6 @@ export class ProductService {
     this.filtersSource.next(newFilters);
   }
 
-  public setFavourite(id: string) {}
-
   public setLoadingState(state) {
     this.loading = state;
   }
