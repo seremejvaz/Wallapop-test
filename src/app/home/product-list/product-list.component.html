@@ -16,6 +16,7 @@
       <app-product
         *ngFor="let product of filteredList"
         [product]="product"
+        [fav]="favouriteList[product.id]"
         (favourited)="setFavourite($event)"
       ></app-product>
     </ng-template>

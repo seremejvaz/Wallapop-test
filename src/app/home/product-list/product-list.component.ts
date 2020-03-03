@@ -4,7 +4,7 @@ import { Product } from "src/types";
 import { ModalService } from "./favourites-modal/modal.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { CACHE_KEY } from "../../constants/constants";
-
+import { v4 as uuidv4 } from "uuid";
 @Component({
   selector: "app-product-list",
   templateUrl: "./product-list.component.html",
@@ -12,6 +12,7 @@ import { CACHE_KEY } from "../../constants/constants";
 })
 export class ProductListComponent implements OnInit {
   public list = [];
+  public favouriteList = {};
   public filteredList = [];
   public pageItems = 5;
 
@@ -30,7 +31,7 @@ export class ProductListComponent implements OnInit {
       (data: { items: Product[] }) => {
         window.localStorage.setItem(CACHE_KEY, JSON.stringify(data));
         this.list = data.items.map(item => {
-          return { ...item, id: data.items.indexOf(item), favourite: false };
+          return { ...item, id: uuidv4() };
         });
 
         this.getFilteredProducts();
@@ -88,10 +89,7 @@ export class ProductListComponent implements OnInit {
   }
 
   setFavourite(id) {
-    this.filteredList[id] = {
-      ...this.filteredList[id],
-      favourite: !this.filteredList[id].favourite
-    };
+    this.favouriteList[id] = !this.favouriteList[id];
   }
 
   getIsOpenModal() {
@@ -100,7 +98,7 @@ export class ProductListComponent implements OnInit {
 
   getFavourites() {
     return this.filteredList.filter(item => {
-      return item.favourite === true;
+      return this.favouriteList[item.id];
     });
   }
 

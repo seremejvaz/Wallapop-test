@@ -2,9 +2,7 @@
   <div class="card-header">
     <p class="email">{{ product.email }}</p>
     <div class="favourite" (click)="favourite(product.id)">
-      <i class="material-icons">{{
-        product.favourite ? "favorite" : "favorite_border"
-      }}</i>
+      <i class="material-icons">{{ getFavouritedIcon() }}</i>
     </div>
   </div>
   <div class="content">

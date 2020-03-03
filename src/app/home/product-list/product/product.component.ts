@@ -9,9 +9,16 @@ import { ProductService } from "../../product.service";
 })
 export class ProductComponent implements OnInit {
   @Input() product: Product;
+  @Input() fav: boolean;
   @Output() favourited = new EventEmitter<boolean>();
 
+
   constructor(private productService: ProductService) {}
+  
+  getFavouritedIcon = () => {
+    return this.fav ? 'favorite' : 'favorite_border'
+  }
+  
   favourite(id) {
     this.favourited.emit(id);
   }
