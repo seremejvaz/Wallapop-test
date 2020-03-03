@@ -23,9 +23,12 @@ export class ProductService {
   });
   private filters$ = this.filtersSource.asObservable();
 
+  public loading: boolean = false;
+
   constructor(private http: HttpClient) {}
 
   public getProducts() {
+    this.loading = true;
     if (!window.localStorage.getItem("cache")) {
       return this.http.get(
         "https://webpublic.s3-eu-west-1.amazonaws.com/tech-test/items.json"
@@ -44,4 +47,8 @@ export class ProductService {
   }
 
   public setFavourite(id: string) {}
+
+  public setLoadingState(state) {
+    this.loading = state;
+  }
 }

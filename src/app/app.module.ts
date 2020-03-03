@@ -13,7 +13,9 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { MatButtonModule } from "@angular/material/button";
 import { FavouritesModalComponent } from "./home/product-list/favourites-modal/favourites-modal.component";
 import { ModalService } from "./home/product-list/favourites-modal/modal.service";
-import { SortComponent } from './home/sort/sort.component';
+import { SortComponent } from "./home/sort/sort.component";
+import { LoadingComponent } from "./home/product-list/loading/loading.component";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { SortComponent } from './home/sort/sort.component';
     FiltersComponent,
     ProductComponent,
     FavouritesModalComponent,
-    SortComponent
+    SortComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { SortComponent } from './home/sort/sort.component';
     HttpClientModule,
     MatInputModule,
     NoopAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
   providers: [ModalService],
   bootstrap: [AppComponent]

@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { ProductService } from "../product.service";
 import { Product } from "src/types";
 import { ModalService } from "./favourites-modal/modal.service";
-import { importExpr } from "@angular/compiler/src/output/output_ast";
 
 @Component({
   selector: "app-product-list",
@@ -69,6 +68,7 @@ export class ProductListComponent implements OnInit {
           return 0;
         });
     });
+    this.productService.setLoadingState(false);
   }
 
   setFavourite(id) {
@@ -86,5 +86,9 @@ export class ProductListComponent implements OnInit {
     return this.filteredList.filter(item => {
       return item.favourite === true;
     });
+  }
+
+  getIsLoading() {
+    return this.productService.loading;
   }
 }
