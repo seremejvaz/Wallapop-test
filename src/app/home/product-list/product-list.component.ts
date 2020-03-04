@@ -47,45 +47,39 @@ export class ProductListComponent implements OnInit {
   getFilteredProducts() {
     this.productService.getFilters().subscribe(f => {
       this.filteredList = this.list
-        .filter(this.filterProducts(f))
+        .filter(p => this.filterProducts(f, p))
         .slice(f.filters.page, (f.filters.page + 1) * this.pageItems)
-        .sort(this.sortProducts(f));
+        .sort((a, b) => this.sortProducts(f, a, b));
     });
     this.productService.setLoadingState(false);
   }
 
-  sortProducts(f: any): (a: any, b: any) => number {
-    return (a, b) => {
-      if (f.sorters.key === "price") {
-        a.price = parseInt(a.price);
-        b.price = parseInt(b.price);
-      }
-      if (a[f.sorters.key] < b[f.sorters.key]) {
-        return f.sorters.dir * -1;
-      }
-      if (a[f.sorters.key] > b[f.sorters.key]) {
-        return f.sorters.dir;
-      }
-      return 0;
-    };
+  sortProducts(f, a, b) {
+    if (f.sorters.key === "price") {
+      a.price = parseInt(a.price);
+      b.price = parseInt(b.price);
+    }
+    if (a[f.sorters.key] < b[f.sorters.key]) {
+      return f.sorters.dir * -1;
+    }
+    if (a[f.sorters.key] > b[f.sorters.key]) {
+      return f.sorters.dir;
+    }
+    return 0;
   }
 
-  filterProducts(f: any): (value: any, index: number, array: any[]) => unknown {
-    return p => {
-      let keepItem = true;
-      Object.keys(f.filters).map(filterKey => {
-        if (
-          f.filters[filterKey] &&
-          filterKey !== "page" &&
-          !p[filterKey]
-            .toLowerCase()
-            .includes(f.filters[filterKey].toLowerCase())
-        ) {
-          keepItem = false;
-        }
-      });
-      return keepItem;
-    };
+  filterProducts(f, p: Product) {
+    let keepItem = true;
+    Object.keys(f.filters).map(filterKey => {
+      if (
+        f.filters[filterKey] &&
+        filterKey !== "page" &&
+        !p[filterKey].toLowerCase().includes(f.filters[filterKey].toLowerCase())
+      ) {
+        keepItem = false;
+      }
+    });
+    return keepItem;
   }
 
   setFavourite(id) {
