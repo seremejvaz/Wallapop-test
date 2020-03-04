@@ -37,6 +37,7 @@ export class ProductListComponent implements OnInit {
         this.getFilteredProducts();
       },
       err => {
+        this.productService.setLoadingState(false);
         this.openSnackBar(
           `Error ${err.status}. There has been an error getting the products.`
         );
