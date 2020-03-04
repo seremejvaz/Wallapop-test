@@ -33,7 +33,10 @@ export class FiltersComponent implements OnInit {
   setFilters(key, value) {
     this.productService.setFilters({
       ...this.filters,
-      filters: { ...this.filters.filters, [key]: value }
+      filters: {
+        ...this.filters.filters,
+        [key]: key === this.FILTERS_KEYS.PRICE ? parseInt(value) : value
+      }
     });
   }
 

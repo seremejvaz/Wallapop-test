@@ -24,6 +24,7 @@
   <mat-form-field class="input">
     <mat-label>Price</mat-label>
     <input
+      type="number"
       #priceValue
       matInput
       (keyup)="setFilters(FILTERS_KEYS.PRICE, priceValue.value)"

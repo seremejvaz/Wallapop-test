@@ -31,7 +31,7 @@ export class ProductListComponent implements OnInit {
       (data: { items: Product[] }) => {
         window.localStorage.setItem(CACHE_KEY, JSON.stringify(data));
         this.list = data.items.map(item => {
-          return { ...item, id: uuidv4() };
+          return { ...item, id: uuidv4(), price: parseInt(item.price) };
         });
 
         this.getFilteredProducts();
@@ -56,10 +56,6 @@ export class ProductListComponent implements OnInit {
   }
 
   sortProducts(f, a, b) {
-    if (f.sorters.key === "price") {
-      a.price = parseInt(a.price);
-      b.price = parseInt(b.price);
-    }
     if (a[f.sorters.key] < b[f.sorters.key]) {
       return f.sorters.dir * -1;
     }
@@ -72,12 +68,20 @@ export class ProductListComponent implements OnInit {
   filterProducts(f, p: Product) {
     let keepItem = true;
     Object.keys(f.filters).map(filterKey => {
-      if (
-        f.filters[filterKey] &&
-        filterKey !== "page" &&
-        !p[filterKey].toLowerCase().includes(f.filters[filterKey].toLowerCase())
-      ) {
-        keepItem = false;
+      if (filterKey === "price" && f.filters[filterKey]) {
+        if (p.price !== f.filters.price) {
+          keepItem = false;
+        }
+      } else {
+        if (
+          f.filters[filterKey] &&
+          filterKey !== "page" &&
+          !p[filterKey]
+            .toLowerCase()
+            .includes(f.filters[filterKey].toLowerCase())
+        ) {
+          keepItem = false;
+        }
       }
     });
     return keepItem;
